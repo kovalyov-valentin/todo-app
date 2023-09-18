@@ -1,15 +1,15 @@
 package handler
 
 import (
-	"github.com/kovalyov-valentin/todo-app/pkg/service"
 	"github.com/gin-gonic/gin"
+	"github.com/kovalyov-valentin/todo-app/pkg/service"
 )
 
 type Handler struct {
 	services *service.Service
 }
 
-func NewHandler(services *service.Service) *Handler{
+func NewHandler(services *service.Service) *Handler {
 	return &Handler{services: services}
 }
 
@@ -35,12 +35,12 @@ func (h *Handler) InitRoutes() *gin.Engine {
 			items := lists.Group(":id/items")
 			{
 				items.POST("/", h.createItem)
-				items.GET("/", h.getAllItem)
+				items.GET("/", h.getAllItems)
 				items.GET("/:item_id", h.getItemById)
 				items.PUT("/:item_id", h.updateItem)
 				items.DELETE("/:item_id", h.deleteItem)
 			}
 		}
 	}
-	return router 
+	return router
 }
